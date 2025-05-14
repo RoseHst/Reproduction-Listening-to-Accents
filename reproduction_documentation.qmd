@@ -1,0 +1,19 @@
+---
+title: "Reproduction of Verbeke und Simon (2023)"
+subtitle: "Listening to accents: Comprehensibility, accentedness and intelligibility of native and non-native English speech"
+author: Zihang Su, Ali Yildiz, Rose Hörsting
+date: last-modified
+format: html
+editor: visual
+---
+
+# Notes
+
+R-Markdown script provided but takes forever to render (like more than 1 hour) and heats up the system (because it fits several highly complex models)
+
+- first goal: work with .csv files to recreate descriptive results
+    - properties of speech samples used for the tasks → tables
+    - comprehensibility ratings; accentedness ratings → violin plots
+    - self-reported familiarity → tables
+    - transcription accuracy (number & proportion of correctly transcribed content and function words of each speaker of English); which types of transcription errors occurred most frequently
+    - self-reported ease of understanding speakers with different accents - match with their actual understanding? (linear correlation?) → scatterplots
