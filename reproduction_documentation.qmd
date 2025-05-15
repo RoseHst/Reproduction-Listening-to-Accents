@@ -1,19 +1,77 @@
 ---
-title: "Reproduction of Verbeke und Simon (2023)"
+title: "Reproduction of Verbeke und Simon (2023):"
 subtitle: "Listening to accents: Comprehensibility, accentedness and intelligibility of native and non-native English speech"
 author: Zihang Su, Ali Yildiz, Rose Hörsting
 date: last-modified
+bibliography: references.bib
 format: html
-editor: visual
 ---
+
+```{r, include=FALSE}
+library(tidyverse)
+library(here)
+```
+
+# About the study
+
+-   aim: examine multidialectal listening skills of proficient EFL learners by:
+
+    -   comprehensibility: self-reported ease/ difficulty of understanding a speaker
+
+    -   intelligibility: actual understanding measured by performance in transcription task
+
+    -   accentedness: degree of perceived foreign accent
+
+-   model of "World Englishes": sorting English-speaking and English-unings world into three circles
+
+    -   **Inner circle**: native English-speaking countries
+
+    -   **Outer circle**: history of English occupation (largely colonisation, e.g. India, Nigeria, Kenya)
+
+    -   **Expanding circle**: English used as international language but not official language; not first and dominant language
+
+-   Research questions (@verbeke2023listening: 5-6)
+
+    -   RQ1: How comprehensible are speakers with diﬀerent native and non-native accents of English to EFL learners in higher education and to what extent do the perceived strength of the speaker’s accent and listeners’ familiarity with the speaker’s accent impact on their comprehensibility ratings?
+
+    -   RQ2: How intelligible are speakers with native and non-native accents of English to EFL learners enrolled at an institute of higher education in Flanders?
+
+    -   RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?
+
+-   Hypotheses:
+
+    -   listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
+
+    -   speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
+
+# Reading in the data
+
+We use the code provided by the authors in an R-Markdown script to read in the csv-files.
+
+```{r read-data}
+Stimuli_T2.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Stimuli_Task_2.csv"))
+
+ComprAcc.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Comprehensibility_Accentedness.csv"))
+
+ComprIntell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Comprehensibility_Intelligibility.csv"))
+
+Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Intelligibility.csv"))
+```
+
+First problem: missing `.csv`-extension for `ComprIntell.data`, `Intell.data`. I added `here` to create relative paths and deleted `row.names = NULL` because otherwise it would not render.
 
 # Notes
 
 R-Markdown script provided but takes forever to render (like more than 1 hour) and heats up the system (because it fits several highly complex models)
 
-- first goal: work with .csv files to recreate descriptive results
-    - properties of speech samples used for the tasks → tables
-    - comprehensibility ratings; accentedness ratings → violin plots
-    - self-reported familiarity → tables
-    - transcription accuracy (number & proportion of correctly transcribed content and function words of each speaker of English); which types of transcription errors occurred most frequently
-    - self-reported ease of understanding speakers with different accents - match with their actual understanding? (linear correlation?) → scatterplots
+-   first goal: work with .csv files to reproduce descriptive results
+    -   properties of speech samples used for the tasks → tables
+    -   comprehensibility ratings; accentedness ratings → violin plots
+    -   self-reported familiarity → tables
+    -   transcription accuracy (number & proportion of correctly transcribed content and function words of each speaker of English); which types of transcription errors occurred most frequently
+    -   self-reported ease of understanding speakers with different accents - match with their actual understanding? (linear correlation?) → scatterplots
+
+# References
+
+::: {#refs}
+:::

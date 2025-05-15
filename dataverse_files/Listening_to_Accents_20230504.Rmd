@@ -27,7 +27,6 @@ library("afex")
 library("car")
 library("ggeffects")
 library("sjmisc")
-library("here")
 ```
 
 
@@ -38,7 +37,7 @@ library("here")
 # Load data
 
 ```{r}
-Stimuli_T2.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Stimuli_Task_2.csv"))
+Stimuli_T2.data <- read.csv("Listening_to_Accents_Stimuli_Task_2.csv", row.names = NULL)
 ```
 
 # Inspection of the dataframe
