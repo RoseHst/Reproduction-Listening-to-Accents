@@ -58,7 +58,48 @@ ComprIntell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accent
 Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Intelligibility.csv"))
 ```
 
-First problem: missing `.csv`-extension for `ComprIntell.data`, `Intell.data`. I added `here` to create relative paths and deleted `row.names = NULL` because otherwise it would not render.
+Convert character variables to factors (from authors' Rmd Codefile of the authors)
+
+```{r}
+Intell.data$Participant <- as.factor(Intell.data$Participant)
+Intell.data$Accent <- as.factor(Intell.data$Accent)
+Intell.data$Sentence <- as.factor(Intell.data$Sentence)
+Intell.data$Item <- as.factor(Intell.data$Item)
+Intell.data$Word_Type <- as.factor(Intell.data$Word_Type)
+Intell.data$Accuracy <- as.factor(Intell.data$Accuracy)
+Intell.data$Familiarity <- as.factor(Intell.data$Familiarity)
+summary(Intell.data)
+```
+
+Rename the levels of Accent (from authors' Rmd Codefile)
+
+```{r}
+levels(Intell.data$Accent) <- c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English")
+summary(Intell.data)
+```
+
+Intelligibility performance for each accent (proportions)
+
+```{r}
+ggplot(Intell.data, 
+       aes(x=Accent, fill = Accuracy)) +
+  geom_bar(position = "fill") +
+  theme_bw() +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
+```
+
+shows: most errors for Nigerian English, Indian English; least errors for General American English & Chinese English
+i.e. participants had most trouble understanding these accents
+
+combination of self reported familiarity & intelligibility:
+
+```{r}
+ggplot(Intell.data,
+      aes(x=Familiarity, fill = Accuracy)) +
+  geom_bar()
+```
+
+seemingly no correlation.
 
 # Notes
 
