@@ -58,45 +58,81 @@ ComprIntell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accent
 Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Intelligibility.csv"))
 ```
 
-Convert character variables to factors (from authors' Rmd Codefile)
+Convert character variable "Accent" to factor to get its levels
 
 ```{r}
-Intell.data$Participant <- as.factor(Intell.data$Participant)
+
 Intell.data$Accent <- as.factor(Intell.data$Accent)
-Intell.data$Sentence <- as.factor(Intell.data$Sentence)
-Intell.data$Item <- as.factor(Intell.data$Item)
-Intell.data$Word_Type <- as.factor(Intell.data$Word_Type)
-Intell.data$Accuracy <- as.factor(Intell.data$Accuracy)
-Intell.data$Familiarity <- as.factor(Intell.data$Familiarity)
-summary(Intell.data)
+levels(Intell.data$Accent)
+
 ```
 
-Rename the levels of Accent (from authors' Rmd Codefile)
+Rename the levels of Accent 
 
 ```{r}
-levels(Intell.data$Accent) <- c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English")
-summary(Intell.data)
+Intell.data <- Intell.data |> 
+    mutate(Accent = recode(Accent,
+                                        "ChinEng" = "Chinese English",
+                                        "GAE" = "General American English",
+                                        "GBE" = "General British English",
+                                        "IndEng" = "Indian English",
+                           "NBE" = "Newcastle English",
+                           "NigEng" = "Nigerian English",
+                           "SAE" = "Texan English",
+                           "SpanEng" = "Spanish English"))
+
+levels(Intell.data$Accent)
+
+
+# levels(Intell.data$Accent) <- c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English")
 ```
 
-Intelligibility performance for each accent (proportions)
+reorder (according to Inner Circle (Standard British - Standard American - Dialect british - Dialect American), Outer circle (Indian English - Nigeran English), Expanding circle (Chinese English, Spanish English); authors' code slighty modified
+
+```{r}
+Intell.data$Accent <- factor(Intell.data$Accent, levels = c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English"))
+levels(Intell.data$Accent)
+```
+
+Look at frequencies:
+
+```{r}
+table(Intell.data$Accent, Intell.data$Accuracy)
+```
+
+Proportional intelligibility performance for each accent:
 
 ```{r}
 ggplot(Intell.data, 
        aes(x=Accent, fill = Accuracy)) +
   geom_bar(position = "fill") +
+    labs(title = "Intelligibility as measured by transcription performance task",
+       x = "Accent",
+       y = "Percent") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
-shows: most errors for Nigerian English, Indian English, i.e. participants had most trouble understanding these accents; least errors for General American English & Chinese English, i.e. participants had least trouble understanding these accents
+shows: most errors for Nigerian English and Indian English, i.e. participants had most trouble understanding these (outer circle) accents; least errors for General American English & Texan English, i.e. participants had least trouble understanding these accents. Notably, there were (significantly) more errors in understanding Standard British English than American English.
 
+Investigating potential correlation of self reported familiarity & intelligibility:
 
-combination of self reported familiarity & intelligibility:
+reorder levels:
+
+```{r}
+Intell.data$Familiarity <- factor(Intell.data$Familiarity, levels = c("Very Often", "Often", "Sometimes", "Rarely", "Never"))
+```
+
 
 ```{r}
 ggplot(Intell.data,
       aes(x=Familiarity, fill = Accuracy)) +
   geom_bar()
+
+ggplot(Intell.data,
+      aes(x=Familiarity, fill = Accuracy)) +
+  geom_bar(position = "fill")
+
 ```
 
 seemingly no correlation.
