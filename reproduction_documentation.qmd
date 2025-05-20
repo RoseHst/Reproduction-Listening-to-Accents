@@ -58,7 +58,7 @@ ComprIntell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accent
 Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Intelligibility.csv"))
 ```
 
-Convert character variables to factors (from authors' Rmd Codefile of the authors)
+Convert character variables to factors (from authors' Rmd Codefile)
 
 ```{r}
 Intell.data$Participant <- as.factor(Intell.data$Participant)
@@ -88,8 +88,8 @@ ggplot(Intell.data,
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
-shows: most errors for Nigerian English, Indian English; least errors for General American English & Chinese English
-i.e. participants had most trouble understanding these accents
+shows: most errors for Nigerian English, Indian English, i.e. participants had most trouble understanding these accents; least errors for General American English & Chinese English, i.e. participants had least trouble understanding these accents
+
 
 combination of self reported familiarity & intelligibility:
 
