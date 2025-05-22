@@ -1,10 +1,23 @@
 ---
 title: "Reproduction of Verbeke und Simon (2023):"
 subtitle: "Listening to accents: Comprehensibility, accentedness and intelligibility of native and non-native English speech"
-author: Zihang Su, Ali Yildiz, Rose Hörsting
+author: Rose Hörsting, Zihang Su, Ali Yıldız
 date: last-modified
+engine: knitr
 bibliography: references.bib
-format: html
+format: 
+  html:
+    df-print: default
+    toc: true
+    toc-depth: 3
+    fig-width: 8
+    fig-height: 6
+    number-sections: true
+    embed-resources: true
+execute:
+  warning: false
+link-citations: true
+number-sections: true
 ---
 
 ```{r, include=FALSE}
