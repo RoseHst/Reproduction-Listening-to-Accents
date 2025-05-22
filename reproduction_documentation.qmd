@@ -8,11 +8,13 @@ format: html
 ---
 
 ```{r, include=FALSE}
+#install.packages("tidyverse")
+#install.packages("here")
 library(tidyverse)
 library(here)
 ```
 
-# About the study
+# About the study/ background
 
 -   aim: examine multidialectal listening skills of proficient EFL learners by:
 
@@ -43,10 +45,10 @@ library(here)
     -   listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
 
     -   speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
+    
+# Method
 
-# Reading in the data
-
-We use the code provided by the authors in an R-Markdown script to read in the csv-files.
+## Reading in the data
 
 ```{r read-data}
 Stimuli_T2.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Stimuli_Task_2.csv"))
@@ -94,35 +96,37 @@ Intell.data$Accent <- factor(Intell.data$Accent, levels = c("General British Eng
 levels(Intell.data$Accent)
 ```
 
-Look at frequencies:
+# Results
+## Intelligibility
+Look at absolute frequencies:
 
 ```{r}
 table(Intell.data$Accent, Intell.data$Accuracy)
 ```
 
-Proportional intelligibility performance for each accent:
+### Accent
 
 ```{r}
+#| label: fig-intell
+#| tbl-cap: Intelligibility as measured by transcription performance task
 ggplot(Intell.data, 
        aes(x=Accent, fill = Accuracy)) +
   geom_bar(position = "fill") +
-    labs(title = "Intelligibility as measured by transcription performance task",
-       x = "Accent",
+    labs(x = "Accent",
        y = "Percent") +
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
-shows: most errors for Nigerian English and Indian English, i.e. participants had most trouble understanding these (outer circle) accents; least errors for General American English & Texan English, i.e. participants had least trouble understanding these accents. Notably, there were (significantly) more errors in understanding Standard British English than American English.
+As @fig-intell demonstrates, participants transcribed all accents somewhat similarly well (more true than false, Accuracy rate well above chance). Most errors were made for Nigerian English and Indian English, which belong to the Outer Circle according to ... i.e. participants had most trouble understanding these accents. Participants had least trouble transcribing General American English & Texan English, i.e. participants undeerstood these accents best. Notably, there were (significantly) more errors in understanding Standard British English than American English  (British English similar to Expanding Circle Accents)
 
-Investigating potential correlation of self reported familiarity & intelligibility:
+### Self reported familiarity
 
 reorder levels:
 
 ```{r}
 Intell.data$Familiarity <- factor(Intell.data$Familiarity, levels = c("Very Often", "Often", "Sometimes", "Rarely", "Never"))
 ```
-
 
 ```{r}
 ggplot(Intell.data,
@@ -136,6 +140,23 @@ ggplot(Intell.data,
 ```
 
 seemingly no correlation.
+
+### Word Type
+
+```{r}
+table(Intell.data$Accuracy, Intell.data$Word_Type)
+```
+
+```{r}
+mosaicplot(Word_Type ~ Accuracy,
+           data = Intell.data,
+           main = "",
+           xlab = "Word Type",
+           ylab = "Accuracy",
+           col = c("lightblue", "orange"))
+```
+
+Function words slightly more easily intelligible but overall very similar
 
 # Notes
 
