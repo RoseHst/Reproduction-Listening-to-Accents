@@ -45,7 +45,7 @@ library(here)
     -   listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
 
     -   speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
-    
+
 # Method
 
 ## Reading in the data
@@ -69,7 +69,7 @@ levels(Intell.data$Accent)
 
 ```
 
-Rename the levels of Accent 
+Rename the levels of Accent
 
 ```{r}
 Intell.data <- Intell.data |> 
@@ -97,7 +97,9 @@ levels(Intell.data$Accent)
 ```
 
 # Results
+
 ## Intelligibility
+
 Look at absolute frequencies:
 
 ```{r}
@@ -118,7 +120,9 @@ ggplot(Intell.data,
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
 
-As @fig-intell demonstrates, participants transcribed all accents somewhat similarly well (more true than false, Accuracy rate well above chance). Most errors were made for Nigerian English and Indian English, which belong to the Outer Circle according to ... i.e. participants had most trouble understanding these accents. Participants had least trouble transcribing General American English & Texan English, i.e. participants undeerstood these accents best. Notably, there were (significantly) more errors in understanding Standard British English than American English  (British English similar to Expanding Circle Accents)
+As @fig-intell demonstrates, participants performed better than chance for all accents, although there was some variation between languages that match the Circle model. Most errors were made for Nigerian English and Indian English, which belong to the Outer Circle according to @kachru1985standards, i.e. participants had most trouble understanding these accents. Participants had least trouble transcribing General American English & Texan English, i.e. participants understood these accents best.
+
+Notably, there were (significantly) more errors in understanding Standard British English than American English (British English similar to Expanding Circle Accents). For American English, transciption performance for dialect speech (Texan English) was slightly worse than for the Standard variant (though Accuracy was still very high) while for British English, the Newcastle dialect improved intelligibility slightly compared to General british English.
 
 ### Self reported familiarity
 
@@ -157,6 +161,8 @@ mosaicplot(Word_Type ~ Accuracy,
 ```
 
 Function words slightly more easily intelligible but overall very similar
+
+Ordinal data: comprehensibility ratings and accentedness ratings (and familiarity)
 
 # Notes
 
