@@ -78,7 +78,7 @@ ComprIntell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accent
 Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Intelligibility.csv"))
 ```
 
-Convert character variable "Accent" to factor to get its levels
+Here, we focus on the intelligibility data. It represents the transcription performance of the EFL learners when listening to each accent (measurement: accuracy, so whether the word was correctly or falsely transcribed). We convert the character variable "Accent" to factor to get its levels.
 
 ```{r}
 
@@ -87,7 +87,7 @@ levels(Intell.data$Accent)
 
 ```
 
-Rename the levels of Accent
+Next, the levels of the factor are renamed for more transparent labeling.
 
 ```{r}
 Intell.data <- Intell.data |> 
@@ -107,16 +107,28 @@ levels(Intell.data$Accent)
 # levels(Intell.data$Accent) <- c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English")
 ```
 
-reorder (according to Inner Circle (Standard British - Standard American - Dialect british - Dialect American), Outer circle (Indian English - Nigeran English), Expanding circle (Chinese English, Spanish English); authors' code slighty modified
+We reorder the levels according to @kachru1985standards' model of World Englishes: Inner Circle: Standard British, Standard American, Dialect British, Dialect American; Outer circle: Indian English, Nigeran English; Expanding Circle: Chinese English, Spanish English.
 
 ```{r}
 Intell.data$Accent <- factor(Intell.data$Accent, levels = c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English"))
 levels(Intell.data$Accent)
 ```
 
+Descriptive statistics (Min, Max, Median, Mean, Standard Deviation, Interquartile Range)
+
+Data distribution (Boxplots)
+
+Data density (Normally distributed)
+
+Statistical significance test (t-test, two-sample Wilcoxon test)
+
+Interaction of Comprehensibility and Accentedness (correlation) (?)
+
 # Results
 
 ## Intelligibility
+
+### Accent
 
 Look at absolute frequencies:
 
@@ -124,7 +136,7 @@ Look at absolute frequencies:
 table(Intell.data$Accent, Intell.data$Accuracy)
 ```
 
-### Accent
+Plot relative frequencies (proportional):
 
 ```{r}
 #| label: fig-intell
@@ -161,7 +173,7 @@ ggplot(Intell.data,
 
 ```
 
-seemingly no correlation.
+It seems there is no correlation of Familiarity and Accuracy.
 
 ### Word Type
 
@@ -197,3 +209,25 @@ R-Markdown script provided but takes forever to render (like more than 1 hour) a
 
 ::: {#refs}
 :::
+
+## Packages used
+
+```{r package-versions, echo=FALSE}
+sessionInfo()
+```
+
+## Package references
+
+Code by Elen Le Foll
+
+```{r generateBibliography, results="asis", echo=FALSE}
+
+packages.bib <- sapply(1:length(loadedNamespaces()), function(i) toBibtex(citation(loadedNamespaces()[i])))
+
+knitr::write_bib(c(.packages(), "knitr"), "packages.bib")
+
+require("knitcitations")
+cleanbib()
+options("citation_format" = "pandoc")
+read.bibtex(file = "packages.bib")
+```
