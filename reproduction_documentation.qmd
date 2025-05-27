@@ -1,5 +1,5 @@
 ---
-title: "Reproduction of Verbeke und Simon (2023):"
+title: "Reproduction of Verbeke und Simon (2023)"
 subtitle: "Listening to accents: Comprehensibility, accentedness and intelligibility of native and non-native English speech"
 author: Rose Hörsting, Zihang Su, Ali Yıldız
 date: last-modified
@@ -67,9 +67,8 @@ The aim of the study by @verbeke2023listening is to examine the multidialectal l
 
 First, we read in the data provided by the authors of the study. The data is available at the Tromsø Repository of Language and Linguistics (<https://dataverse.no/dataset.xhtml?persistentId=doi:10.18710/8F0Q0L>).
 
-```{r read-data}
+```{r read-data, echo = FALSE}
 #| code-fold: true
-Stimuli_T2.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Stimuli_Task_2.csv"))
 
 ComprAcc.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Comprehensibility_Accentedness.csv"))
 
@@ -78,18 +77,20 @@ ComprIntell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accent
 Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Intelligibility.csv"))
 ```
 
-Here, we focus on the intelligibility data. It represents the transcription performance of the EFL learners when listening to each accent (measurement: accuracy, so whether the word was correctly or falsely transcribed). We convert the character variable "Accent" to factor to get its levels.
+The intelligibility data represents the transcription performance of the EFL learners when listening to each accent (measurement: accuracy, so whether the word was correctly or falsely transcribed). In the ComprAcc.data, comprehensibility and accentedness are rated from the EFL learners on a scale from 1 to 10. We convert the character variable "Accent" in both dataframes to factor to get its levels.
 
-```{r}
+```{r, echo = FALSE}
 
 Intell.data$Accent <- as.factor(Intell.data$Accent)
 levels(Intell.data$Accent)
+
+ComprAcc.data$Accent <- as.factor(ComprAcc.data$Accent)
 
 ```
 
 Next, the levels of the factor are renamed for more transparent labeling.
 
-```{r}
+```{r, echo = FALSE}
 Intell.data <- Intell.data |> 
     mutate(Accent = recode(Accent,
                                         "ChinEng" = "Chinese English",
@@ -101,44 +102,148 @@ Intell.data <- Intell.data |>
                            "SAE" = "Texan English",
                            "SpanEng" = "Spanish English"))
 
-levels(Intell.data$Accent)
 
+ComprAcc.data <- ComprAcc.data |> 
+    mutate(Accent = recode(Accent,
+                                        "ChinEng" = "Chinese English",
+                                        "GAE" = "General American English",
+                                        "GBE" = "General British English",
+                                        "IndEng" = "Indian English",
+                           "NBE" = "Newcastle English",
+                           "NigEng" = "Nigerian English",
+                           "SAE" = "Texan English",
+                           "SpanEng" = "Spanish English"))
+
+
+levels(Intell.data$Accent)
 
 # levels(Intell.data$Accent) <- c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English")
 ```
 
 We reorder the levels according to @kachru1985standards' model of World Englishes: Inner Circle: Standard British, Standard American, Dialect British, Dialect American; Outer circle: Indian English, Nigeran English; Expanding Circle: Chinese English, Spanish English.
 
-```{r}
+```{r, echo = FALSE}
 Intell.data$Accent <- factor(Intell.data$Accent, levels = c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English"))
+
+ComprAcc.data$Accent <- factor(ComprAcc.data$Accent, levels = c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English"))
+
 levels(Intell.data$Accent)
 ```
 
-Descriptive statistics (Min, Max, Median, Mean, Standard Deviation, Interquartile Range)
+## Data exploration (Descriptive statistics)
 
-Data distribution (Boxplots)
+Comprehensibility and accentedness are ordinal: "Comprehensibility was defined as how easy or how diﬃcult it is to understand what a speaker is saying (1 = easy to understand; 9 = hard to understand). Accentedness was defined as the degree to which a speaker’s speech sounds diﬀerent from a listener’s expectation of English (1 = no accent; 9 = strong accent)" [@verbeke2023listening: 8]
 
-Data density (Normally distributed)
+Min, Max, Median, Mean, standard deviation, (Interquartile Range)); also grouped by accent:
+
+```{r, echo = FALSE}
+summary(ComprAcc.data$Comprehensibility)
+summary(ComprAcc.data$Accentedness)
+
+Compr.stats <- ComprAcc.data |> 
+  group_by(Accent) |> 
+  summarise(
+    Mean = mean(Comprehensibility),
+    Median = median(Comprehensibility),
+    SD = sd(Comprehensibility),
+    Min = min(Comprehensibility),
+    Max = max(Comprehensibility), 
+    IQR = IQR(Comprehensibility)
+  )
+
+Acc.stats <- ComprAcc.data |> 
+  group_by(Accent) |> 
+  summarise(
+    Mean = mean(Accentedness),
+    Median = median(Accentedness),
+    SD = sd(Accentedness),
+    Min = min(Accentedness),
+    Max = max(Accentedness), 
+    IQR = IQR(Accentedness)
+  )
+
+Compr.stats
+Acc.stats
+```
+
+# Results (Data distribution)
+
+## Accentedness
+
+Boxplot:
+
+```{r, echo = FALSE}
+# Accentedness
+ComprAcc.data |>
+  ggplot(mapping = aes(x = Accent, y = Accentedness, fill = Accent)) +
+  geom_boxplot(outliers = FALSE) +
+  theme_bw() +
+  xlab("Accent group") +
+  ylab("Rating (1-10)") +
+  labs(title = "Rated Accentedness by Accent") +
+  theme(legend.position = "none", axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)
+  )
+```
+
+Visualises that American English was rated the least accented while Texan, Indian, Nigerian, Chinese and Spanish English were all rated pretty similarly accented.
+
+```{r, include = FALSE}
+# Data density (Normally distributed?)
+# mean.Acc <- ComprAcc.data |>
+#   summarise(mean = mean(Accentedness))
+# 
+# ComprAcc.data |>
+#   ggplot(mapping = aes(x = Accentedness)) + 
+#   geom_density(alpha = 0.6, position = "identity") +
+#   geom_vline(data = mean.Acc, aes(xintercept = mean), linetype = "dashed") +
+#   theme_bw()
+# 
+# Accentness:  right skewed 
+# ComprAcc.data |>
+#   ggplot(mapping = aes(x = Comprehensibility)) + 
+#   geom_density(alpha = 0.6, position = "identity") +
+#   theme_bw()
+```
+
+Exploring the (potential) correlation of Accentedness and Comprehensibility: 
+
+```{r, echo = FALSE}
+ComprAcc.data |> 
+  ggplot(mapping = aes(x = Accentedness, 
+                     y = Comprehensibility)) +
+  geom_point() +
+  geom_smooth(method = "lm", 
+              se = FALSE)
+```
+
+```{r, echo = FALSE}
+ComprAcc.data |> 
+  summarise(cor = cor(Accentedness, Comprehensibility)) |> 
+  round(digits = 2)
+
+# correlation of 0.5
+
+cor.test(x = ComprAcc.data$Accentedness, y = ComprAcc.data$Comprehensibility)
+# extremely smalll p-value: < 2.2e-16
+```
+
+We see a statistically significant positive correlation ($p$ = < 2.2e-16) of Ratings of Comprehensibility and Accentedness, which makes intuitive sense: Higher comprehensibility ratings (which, perhaps counterintuitively, mean harder to understand) occur often with higher accentedness ratings (i.e. stronger accent). The data reflects that more accented speech was more difficult to understand for speakers than less accented speech (But keep in mind that this rating is entirely subjective, as Verbeke and Simon [-@verbeke2023listening: 3] emphasise).
 
 Statistical significance test (t-test, two-sample Wilcoxon test)
-
-Interaction of Comprehensibility and Accentedness (correlation) (?)
-
-# Results
 
 ## Intelligibility
 
 ### Accent
 
-Look at absolute frequencies:
+Absolute frequencies:
 
-```{r}
+```{r, echo = FALSE}
 table(Intell.data$Accent, Intell.data$Accuracy)
 ```
 
-Plot relative frequencies (proportional):
+Barplot relative frequencies (proportional):
 
-```{r}
+```{r, echo = FALSE}
 #| label: fig-intell
 #| tbl-cap: Intelligibility as measured by transcription performance task
 ggplot(Intell.data, 
@@ -156,13 +261,11 @@ Notably, there were (significantly) more errors in understanding Standard Britis
 
 ### Self reported familiarity
 
-reorder levels:
-
-```{r}
+```{r, echo = FALSE}
 Intell.data$Familiarity <- factor(Intell.data$Familiarity, levels = c("Very Often", "Often", "Sometimes", "Rarely", "Never"))
 ```
 
-```{r}
+```{r, echo = FALSE}
 ggplot(Intell.data,
       aes(x=Familiarity, fill = Accuracy)) +
   geom_bar()
@@ -177,11 +280,11 @@ It seems there is no correlation of Familiarity and Accuracy.
 
 ### Word Type
 
-```{r}
+```{r, echo = FALSE}
 table(Intell.data$Accuracy, Intell.data$Word_Type)
 ```
 
-```{r}
+```{r, echo = FALSE}
 mosaicplot(Word_Type ~ Accuracy,
            data = Intell.data,
            main = "",
@@ -191,8 +294,6 @@ mosaicplot(Word_Type ~ Accuracy,
 ```
 
 Function words slightly more easily intelligible but overall very similar
-
-Ordinal data: comprehensibility ratings and accentedness ratings (and familiarity)
 
 # Notes
 
@@ -218,7 +319,7 @@ sessionInfo()
 
 ## Package references
 
-Code by Elen Le Foll
+This code was written by Elen Le Foll:
 
 ```{r generateBibliography, results="asis", echo=FALSE}
 
