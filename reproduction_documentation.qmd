@@ -29,6 +29,8 @@ library(here)
 
 # About the study/ background
 
+The aim of the study by @verbeke2023listening is to examine the multidialectal listening skills of proficient English learners, i.e. how well English learners understand different accents of English.
+
 -   aim: examine multidialectal listening skills of proficient EFL learners by:
 
     -   comprehensibility: self-reported ease/ difficulty of understanding a speaker
@@ -63,7 +65,10 @@ library(here)
 
 ## Reading in the data
 
+First, we read in the data provided by the authors of the study. The data is available at the Tromsø Repository of Language and Linguistics (<https://dataverse.no/dataset.xhtml?persistentId=doi:10.18710/8F0Q0L>).
+
 ```{r read-data}
+#| code-fold: true
 Stimuli_T2.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Stimuli_Task_2.csv"))
 
 ComprAcc.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Comprehensibility_Accentedness.csv"))
