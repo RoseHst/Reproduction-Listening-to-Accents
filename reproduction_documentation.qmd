@@ -25,6 +25,7 @@ number-sections: true
 #install.packages("here")
 library(tidyverse)
 library(here)
+library(kableExtra)
 ```
 
 # About the study/ background
@@ -80,11 +81,13 @@ Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Int
 The intelligibility data represents the transcription performance of the EFL learners when listening to each accent (measurement: accuracy, so whether the word was correctly or falsely transcribed). In the ComprAcc.data, comprehensibility and accentedness are rated from the EFL learners on a scale from 1 to 10. We convert the character variable "Accent" in both dataframes to factor to get its levels.
 
 ```{r, echo = FALSE}
-
+# accent as factor in all the datasets
 Intell.data$Accent <- as.factor(Intell.data$Accent)
 levels(Intell.data$Accent)
 
 ComprAcc.data$Accent <- as.factor(ComprAcc.data$Accent)
+
+ComprIntell.data$Accent <- as.factor(ComprIntell.data$Accent)
 
 ```
 
@@ -114,6 +117,17 @@ ComprAcc.data <- ComprAcc.data |>
                            "SAE" = "Texan English",
                            "SpanEng" = "Spanish English"))
 
+ComprIntell.data <- ComprIntell.data |> 
+    mutate(Accent = recode(Accent,
+                                        "ChinEng" = "Chinese English",
+                                        "GAE" = "General American English",
+                                        "GBE" = "General British English",
+                                        "IndEng" = "Indian English",
+                           "NBE" = "Newcastle English",
+                           "NigEng" = "Nigerian English",
+                           "SAE" = "Texan English",
+                           "SpanEng" = "Spanish English"))
+
 
 levels(Intell.data$Accent)
 
@@ -127,6 +141,8 @@ Intell.data$Accent <- factor(Intell.data$Accent, levels = c("General British Eng
 
 ComprAcc.data$Accent <- factor(ComprAcc.data$Accent, levels = c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English"))
 
+ComprIntell.data$Accent <- factor(ComprIntell.data$Accent, levels = c("General British English", "General American English", "Newcastle English", "Texan English", "Indian English", "Nigerian English", "Chinese English", "Spanish English"))
+
 levels(Intell.data$Accent)
 ```
 
@@ -134,12 +150,14 @@ levels(Intell.data$Accent)
 
 Comprehensibility and accentedness are ordinal: "Comprehensibility was defined as how easy or how diﬃcult it is to understand what a speaker is saying (1 = easy to understand; 9 = hard to understand). Accentedness was defined as the degree to which a speaker’s speech sounds diﬀerent from a listener’s expectation of English (1 = no accent; 9 = strong accent)" [@verbeke2023listening: 8]
 
-Min, Max, Median, Mean, standard deviation, (Interquartile Range)); also grouped by accent:
+Min, Max, Median, Mean, standard deviation, (Interquartile Range)) grouped by accent:
 
-```{r, echo = FALSE}
+```{r summary-compr-acc, include = FALSE}
 summary(ComprAcc.data$Comprehensibility)
 summary(ComprAcc.data$Accentedness)
+```
 
+```{r comprehensibility-stats, echo = FALSE}
 Compr.stats <- ComprAcc.data |> 
   group_by(Accent) |> 
   summarise(
@@ -151,6 +169,10 @@ Compr.stats <- ComprAcc.data |>
     IQR = IQR(Comprehensibility)
   )
 
+kbl(Compr.stats, caption = "Descriptive Statitics for Comprehensibility Rating")
+```
+
+```{r accentedness-stats, echo = FALSE}
 Acc.stats <- ComprAcc.data |> 
   group_by(Accent) |> 
   summarise(
@@ -162,15 +184,16 @@ Acc.stats <- ComprAcc.data |>
     IQR = IQR(Accentedness)
   )
 
-Compr.stats
-Acc.stats
+kbl(Acc.stats, caption = "Descriptive Statitics for Accentedness Rating")
 ```
+
+What does this tell us?
 
 # Results (Data distribution)
 
 ## Accentedness
 
-Boxplot:
+This boxlot visualises the accentedness ratings for each accent.
 
 ```{r, echo = FALSE}
 # Accentedness
@@ -185,26 +208,9 @@ ComprAcc.data |>
   )
 ```
 
-Visualises that American English was rated the least accented while Texan, Indian, Nigerian, Chinese and Spanish English were all rated pretty similarly accented.
+It illustrates that General American English was rated the least accented; General British English was rated second least accented but more than General American. Newcastle English (so British dialect) rated as slihtly more accented than General British English while Texan, Indian, Nigerian, Chinese and Spanish English were all rated pretty similarly the most accented.
 
-```{r, include = FALSE}
-# Data density (Normally distributed?)
-# mean.Acc <- ComprAcc.data |>
-#   summarise(mean = mean(Accentedness))
-# 
-# ComprAcc.data |>
-#   ggplot(mapping = aes(x = Accentedness)) + 
-#   geom_density(alpha = 0.6, position = "identity") +
-#   geom_vline(data = mean.Acc, aes(xintercept = mean), linetype = "dashed") +
-#   theme_bw()
-# 
-# Accentness:  right skewed 
-# ComprAcc.data |>
-#   ggplot(mapping = aes(x = Comprehensibility)) + 
-#   geom_density(alpha = 0.6, position = "identity") +
-#   theme_bw()
-```
-
+## Accentedness and Comprehensibility
 Exploring the (potential) correlation of Accentedness and Comprehensibility: 
 
 ```{r, echo = FALSE}
@@ -216,24 +222,24 @@ ComprAcc.data |>
               se = FALSE)
 ```
 
-```{r, echo = FALSE}
+```{r, include = FALSE}
 ComprAcc.data |> 
   summarise(cor = cor(Accentedness, Comprehensibility)) |> 
   round(digits = 2)
-
 # correlation of 0.5
+```
 
+
+```{r, echo = FALSE}
 cor.test(x = ComprAcc.data$Accentedness, y = ComprAcc.data$Comprehensibility)
 # extremely smalll p-value: < 2.2e-16
 ```
 
-We see a statistically significant positive correlation ($p$ = < 2.2e-16) of Ratings of Comprehensibility and Accentedness, which makes intuitive sense: Higher comprehensibility ratings (which, perhaps counterintuitively, mean harder to understand) occur often with higher accentedness ratings (i.e. stronger accent). The data reflects that more accented speech was more difficult to understand for speakers than less accented speech (But keep in mind that this rating is entirely subjective, as Verbeke and Simon [-@verbeke2023listening: 3] emphasise).
+A statistically significant positive correlation ($p$ = < 2.2e-16) of ratings of comprehensibility and accentedness is observed, which makes intuitive sense: higher comprehensibility ratings (which, perhaps counterintuitively, mean harder to understand) occur often with higher accentedness ratings (i.e. stronger accent). The data reflects that more accented speech was more difficult to understand for speakers than less accented speech (But keep in mind that this rating is entirely subjective, as Verbeke and Simon [-@verbeke2023listening: 3] emphasise).
 
 Statistical significance test (t-test, two-sample Wilcoxon test)
 
 ## Intelligibility
-
-### Accent
 
 Absolute frequencies:
 
@@ -257,15 +263,15 @@ ggplot(Intell.data,
 
 As @fig-intell demonstrates, participants performed better than chance for all accents, although there was some variation between languages that match the Circle model. Most errors were made for Nigerian English and Indian English, which belong to the Outer Circle according to @kachru1985standards, i.e. participants had most trouble understanding these accents. Participants had least trouble transcribing General American English & Texan English, i.e. participants understood these accents best.
 
-Notably, there were (significantly) more errors in understanding Standard British English than American English (British English similar to Expanding Circle Accents). For American English, transciption performance for dialect speech (Texan English) was slightly worse than for the Standard variant (though Accuracy was still very high) while for British English, the Newcastle dialect improved intelligibility slightly compared to General british English.
+Notably, there were (significantly) more errors in understanding Standard British English than American English (British English similar to Expanding Circle Accents). For American English, transciption performance for dialect speech (Texan English) was slightly worse than for the Standard variant (though Accuracy was still very high) while for British English, the Newcastle dialect improved intelligibility slightly compared to General British English.
 
-### Self reported familiarity
+<!-- ### Self reported familiarity
 
 ```{r, echo = FALSE}
 Intell.data$Familiarity <- factor(Intell.data$Familiarity, levels = c("Very Often", "Often", "Sometimes", "Rarely", "Never"))
 ```
 
-```{r, echo = FALSE}
+```{r, include = FALSE}
 ggplot(Intell.data,
       aes(x=Familiarity, fill = Accuracy)) +
   geom_bar()
@@ -274,10 +280,10 @@ ggplot(Intell.data,
       aes(x=Familiarity, fill = Accuracy)) +
   geom_bar(position = "fill")
 
+
 ```
 
 It seems there is no correlation of Familiarity and Accuracy.
-
 ### Word Type
 
 ```{r, echo = FALSE}
@@ -293,7 +299,58 @@ mosaicplot(Word_Type ~ Accuracy,
            col = c("lightblue", "orange"))
 ```
 
-Function words slightly more easily intelligible but overall very similar
+Function words slightly more easily intelligible but overall very similar -->
+
+In the ComprIntell.data, Intelligbility is scaled on a 0-1 scale as a continuous variable (seemingly means: how much percent did the participant transcribe correctly (in that accent))
+
+Distribution/ density:
+
+```{r intell-table, echo = FALSE}
+table(ComprIntell.data$Intelligibility) #distributions, Intellibility scaled on a 0-1 scale instead of binary TRUE/FALSE values
+```
+
+```{r intell-distribution, echo = FALSE}
+# density
+ComprIntell.data |>
+  ggplot(mapping = aes(x = Intelligibility)) + 
+  geom_density(alpha = 0.75) +
+  theme_bw()
+```
+
+Bell-shaped curve but left-skewed: overall, participants performed well in the transcription task
+
+Compare across Accent groups:
+
+```{r distribution-accent-intelligibility, echo = FALSE}
+ComprIntell.data |>
+  ggplot(mapping = aes(x = Intelligibility, fill = Accent)) + 
+  geom_density(alpha = 0.6, position = "identity") +
+  #facet_grid(~ Accent)
+  theme_bw()
+```
+
+Not sure how helpful this is... looks a little overloaded with colour (graphs can be isolated by `facet_grid(~ Accent)`). But it demonstrates left skews for all accents, i.e. participants performed well for all of them, and (again) that General American English was the most intelligible, which aligns with it being rated as least accented and most comprehensible. Notably, Spanish English, Nigerian English and Indian English (as far as I can tell) have quite a flat curve, while the others are really steep with a pointed peak.
+
+## Intelligibility and Comprehensibility
+
+Intelligibility and Comprehensibility, i.e. did self-reported comprehensibility align with objective, measured intelligibility? (RQ3)
+
+Checking correlation of comprehensibility and intelligibility for each accent using a scatterplot:
+
+```{r intell-scatter, echo = FALSE}
+
+ComprIntell.data |> 
+  ggplot(mapping = aes(x = Comprehensibility, 
+                     y = Intelligibility)) +
+  geom_point(size = 2) +
+  geom_jitter() +
+  facet_wrap(~ Accent) +
+  geom_smooth(se = FALSE)
+
+```
+
+Looks really similar to the one from the paper (was not on purpose)! What does it tell us?
+
 
 # Notes
 
@@ -319,7 +376,7 @@ sessionInfo()
 
 ## Package references
 
-This code was written by Elen Le Foll:
+The code to generate these package references was written by Elen Le Foll:
 
 ```{r generateBibliography, results="asis", echo=FALSE}
 
