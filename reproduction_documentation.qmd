@@ -64,7 +64,7 @@ ComprIntell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accent
 Intell.data <- read.csv(file = here("dataverse_files", "Listening_to_Accents_Intelligibility.csv"))
 ```
 
-In the `ComprAcc.data`, comprehensibility and accentedness are rated from the EFL learners on a scale from 1 to 10 (for comprehensibility: 1 = easy to understand; 9 = hard to understand; for accentedness: 1 = no accent; 9 = strong accent) [@verbeke2023listening: 8]). The intelligibility data (`Intell.data`) represents the transcription performance of the EFL learners when listening to each accent (accuracy, so whether the word was correctly or falsely transcribed). The dataframe `ComprIntell.data` includes comprehensibility ratings and intelligibility scaled on the range of 0 to 1.
+In the `ComprAcc.data`, comprehensibility and accentedness are rated from the EFL learners on a scale from 1 to 10 (for comprehensibility: 1 = easy to understand; 9 = hard to understand; for accentedness: 1 = no accent; 9 = strong accent) [@verbeke2023listening: 8]). The intelligibility data (`Intell.data`) represents the transcription performance of the EFL learners when listening to each accent (accuracy, so whether the word was correctly or falsely transcribed). The dataframe `ComprIntell.data` includes comprehensibility ratings and intelligibility scaled on the range of 0 to 1 (seemingly means: how much percent did the participant transcribe correctly in that accent).
 
 We convert the character variable "Accent" in all three data frames to factor to get its levels.
 
@@ -303,27 +303,26 @@ mosaicplot(Word_Type ~ Accuracy,
 Function words slightly more easily intelligible but overall very similar -->
 ````
 
-In the `ComprIntell.data`, intelligbility is scaled between 0 and 1 as a continuous variable (seemingly means: how much percent did the participant transcribe correctly (in that accent))
-
-Distribution/ density:
-
-```{r intell-table, echo = FALSE}
+```{r intell-table, include = FALSE}
 table(ComprIntell.data$Intelligibility) #distributions, Intellibility scaled on a 0-1 scale instead of binary TRUE/FALSE values
 ```
 
-```{r intell-distribution, echo = FALSE}
-# density
+```{r intell-density, echo = FALSE}
+#| label: fig-intell-density
+#| fig-cap: Density of Participants' Intelligibility 
 ComprIntell.data |>
   ggplot(mapping = aes(x = Intelligibility)) + 
   geom_density(alpha = 0.75) +
   theme_bw()
 ```
 
-Bell-shaped curve but left-skewed: overall, participants performed above chance in the transcription task.
+@fig-intell-density shows a bell-shaped curve but is left-skewed: overall, participants performed above chance in the transcription task.
 
 Compare across Accent groups:
 
 ```{r distribution-accent-intelligibility, echo = FALSE}
+#| label: fig-intell-accent
+#| fig-cap: Density of Participants' Intelligibility Grouped by Accent
 ComprIntell.data |>
   ggplot(mapping = aes(x = Intelligibility, fill = Accent)) + 
   geom_density(alpha = 0.6, position = "identity") +
@@ -331,7 +330,7 @@ ComprIntell.data |>
   theme_bw()
 ```
 
-Not sure how helpful this is... looks a little overloaded with colour (graphs can be isolated by `facet_grid(~ Accent)`). But it demonstrates that the general tendency of left skew exists for all accents, i.e. on average, participants scored better than chance for all accents, and (again) that General American English was the most intelligible, which aligns with it being rated as least accented and most comprehensible. Notably, Spanish English, Nigerian English and Indian English (as far as I can tell) have quite a flat curve, while the others are really steep with a pointed peak.
+Not sure how helpful this is... @fig-intell-accent looks a little overloaded with colour (graphs can be isolated by `facet_grid(~ Accent)`). But it demonstrates that the general tendency of left skew exists for all accents, i.e. on average, participants scored better than chance for all accents, and (again) that General American English was the most intelligible, which aligns with it being rated as least accented and most comprehensible. Notably, Spanish English, Nigerian English and Indian English (as far as I can tell) have quite a flat curve, while the others are really steep with a pointed peak.
 
 ## Intelligibility and Comprehensibility
 
@@ -340,7 +339,8 @@ Exploring the correlation of intelligibility and comprehensibility, i.e. did sel
 Checking correlation of comprehensibility and intelligibility for each accent using a scatterplot:
 
 ```{r intell-scatter, echo = FALSE}
-
+#| label: fig-intell-scatter
+#| fig-cap: Scatterplot illustrating the correlation of Comprehensibility and Intelligibility
 ComprIntell.data |> 
   ggplot(mapping = aes(x = Comprehensibility, 
                      y = Intelligibility)) +
@@ -351,18 +351,15 @@ ComprIntell.data |>
 
 ```
 
-Looks really similar to the one from the paper (was not on purpose)! What does it tell us?
+@fig-intell-scatter looks pretty identical to the one from the paper (was not on purpose)! What does it tell us? -> no clear Correlation of comprehensibility and intelligibility, definitely not linear across accents.
 
-# Notes
+# Discussion and Conclusion
 
-R-Markdown script provided but takes forever to render (like more than 1 hour) and heats up the system (because it fits several highly complex models)
+- for the most part, proficient EFl learners were able to understand accented English speech very well, but there were differences: General American English, which was rated the least accented and the most comprehensible was the easiest accent to understand.
 
--   first goal: work with .csv files to reproduce descriptive results
-    -   properties of speech samples used for the tasks → tables
-    -   comprehensibility ratings; accentedness ratings → violin plots
-    -   self-reported familiarity → tables
-    -   transcription accuracy (number & proportion of correctly transcribed content and function words of each speaker of English); which types of transcription errors occurred most frequently
-    -   self-reported ease of understanding speakers with different accents - match with their actual understanding? (linear correlation?) → scatterplots
+- comprehensibilit and accentedness are positively correlated; comprehensibility ratings did statistically not align with actual transcription performance (RQ3, see @@fig-intell-scatter)
+
+... (Please add!)
 
 # References
 
