@@ -403,13 +403,13 @@ ComprIntell.data |>
 ::: {#refs}
 :::
 
-## Packages used
+## Session Info
 
 ```{r package-versions, echo = FALSE}
 sessionInfo()
 ```
 
-## Package references
+## Package References
 
 The code to generate these package references was written by Elen Le Foll.
 
