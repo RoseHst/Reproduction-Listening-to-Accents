@@ -1,31 +1,34 @@
 ---
-title: "Reproduction of Verbeke und Simon (2023)"
-subtitle: "Listening to accents: Comprehensibility, accentedness and intelligibility of native and non-native English speech"
-author: Rose Hörsting (rhoerst1), Zihang Su (zsu1), Ali Yıldız (ayildiz8)
-date: last-modified
-engine: knitr
-bibliography: references.bib
-format: 
-  html:
-    df-print: default
+title: "reproduction_doc_rmark"
+author: "Rose"
+date: "`r Sys.Date()`"
+bibliography: "references.bib"
+output:
+  bookdown::html_document2:
     toc: true
-    toc-depth: 3
-    fig-width: 8
-    fig-height: 6
-    number-sections: true
-    embed-resources: true
-execute:
-  warning: false
+    toc_depth: 4
+    toc_float: true
+    number_sections: true
+    theme: cosmo
 link-citations: true
-number-sections: true
+numbersections: true
+header-includes:
+    - \usepackage{setspace}
 ---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning=FALSE, message=FALSE)
+```
+
 
 ```{r, include=FALSE}
 #install.packages("tidyverse")
 #install.packages("here")
+#install.packages("bookdown")
 library(tidyverse)
 library(here)
 library(kableExtra)
+library(bookdown)
 ```
 
 # About the study/ background
@@ -42,13 +45,13 @@ These are the research questions defined by Verbeke and Simon [-@verbeke2023list
 
 - RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?
 
-These are the hypotheses defined by Verbeke and Simon [-@verbeke2023listening: 5-6]:
+-   Hypotheses:
 
-- H1: listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
+    -   H1: listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
 
-- H2: speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
+    -   H2: speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
 
-- H3: a positive correlation between comprehensibility rating and intelligibility score of speakers, especially when comprehensibility rating is high
+    -   H3: a positive correlation between comprehensibility rating and intelligibility score of speakers, especially when comprehensibility rating is high
 
 # Method
 ## Methodology in original study
@@ -173,14 +176,14 @@ levels(Intell.data$Accent)
 
 ### Comprehensibility
 
-@tbl-compr-stats summarises the descriptive statistics of the comprehensibility measurements grouped by accent. Interpret???
+\@ref(tab:compr-stats-kbl) summarises the descriptive statistics of the comprehensibility measurements grouped by accent. Interpret???
 
 ```{r summary-compr-acc, include = FALSE}
 summary(ComprAcc.data$Comprehensibility)
 summary(ComprAcc.data$Accentedness)
 ```
 
-```{r comprehensibility-stats, echo = FALSE}
+```{r compr-stats, echo = FALSE}
 Compr.stats <- ComprAcc.data |> 
   group_by(Accent) |> 
   summarise(
@@ -193,7 +196,7 @@ Compr.stats <- ComprAcc.data |>
   )
 ```
 
-```{r comprehensibility-stats-kbl, echo = FALSE}
+```{r compr-stats-kbl, echo = FALSE}
 #| label: tbl-compr-stats
 #| tbl-cap: Descriptive Statistics for Comprehensibility Rating
 kbl(Compr.stats)
@@ -201,7 +204,7 @@ kbl(Compr.stats)
 
 ### Accentedness
 
-@tbl-acc-stats summarises the descriptive statistics of the comprehensibility measurements grouped by accent. What does this tell us?
+\@ref(tab:accentedness-stats-kbl) summarises the descriptive statistics of the comprehensibility measurements grouped by accent. What does this tell us?
 
 ```{r accentedness-stats, echo = FALSE}
 Acc.stats <- ComprAcc.data |> 
@@ -278,24 +281,9 @@ Statistical significance test (t-test, two-sample Wilcoxon test) ?
 
 RQ2: How intelligible are speakers with native and non-native accents of English to EFL learners enrolled at an institute of higher education in Flanders?
 
+Absolute frequencies:
 
-```{r intell-table, include = FALSE}
-table(ComprIntell.data$Intelligibility) #distributions, Intellibility scaled on a 0-1 scale instead of binary TRUE/FALSE values
-```
-
-```{r intell-density, echo = FALSE}
-#| label: fig-intell-density
-#| fig-cap: Density of Participants' Intelligibility 
-ComprIntell.data |>
-  ggplot(mapping = aes(x = Intelligibility)) + 
-  geom_density(alpha = 0.75) +
-  theme_bw()
-```
-
-@fig-intell-density shows a bell-shaped curve but is left-skewed: overall, participants performed above chance in the transcription task.
-
-```{r, include = FALSE}
-#Absolute frequencies
+```{r, echo = FALSE}
 table(Intell.data$Accent, Intell.data$Accuracy)
 ```
 
@@ -354,6 +342,21 @@ mosaicplot(Word_Type ~ Accuracy,
 
 Function words slightly more easily intelligible but overall very similar -->
 ````
+
+```{r intell-table, include = FALSE}
+table(ComprIntell.data$Intelligibility) #distributions, Intellibility scaled on a 0-1 scale instead of binary TRUE/FALSE values
+```
+
+```{r intell-density, echo = FALSE}
+#| label: fig-intell-density
+#| fig-cap: Density of Participants' Intelligibility 
+ComprIntell.data |>
+  ggplot(mapping = aes(x = Intelligibility)) + 
+  geom_density(alpha = 0.75) +
+  theme_bw()
+```
+
+@fig-intell-density shows a bell-shaped curve but is left-skewed: overall, participants performed above chance in the transcription task.
 
 <!-- Compare across Accent groups:-->
 
