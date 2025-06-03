@@ -244,7 +244,7 @@ ComprAcc.data |>
   )
 ```
 
-## Accentedness and Comprehensibility
+<!-- ## Accentedness and Comprehensibility
 
 RQ1: How comprehensible are speakers with diﬀerent native and non-native accents of English to EFL learners in higher education and to what extent do the perceived strength of the speaker’s accent and listeners’ familiarity with the speaker’s accent impact on their comprehensibility ratings?
 
@@ -272,7 +272,7 @@ cor.test(x = ComprAcc.data$Accentedness, y = ComprAcc.data$Comprehensibility)
 
 A statistically significant positive correlation ($p$ \< 2.2e-16) of ratings of comprehensibility and accentedness is observed, which makes intuitive sense: higher comprehensibility ratings (which, perhaps counterintuitively, mean harder to understand) occur often with higher accentedness ratings (i.e. stronger accent). The data reflects that more accented speech was more difficult to understand for speakers than less accented speech (But keep in mind that this rating is entirely subjective, as Verbeke and Simon [-@verbeke2023listening: 3] emphasise).
 
-Statistical significance test (t-test, two-sample Wilcoxon test) ?
+Statistical significance test (t-test, two-sample Wilcoxon test) ? -->
 
 ## Intelligibility
 
