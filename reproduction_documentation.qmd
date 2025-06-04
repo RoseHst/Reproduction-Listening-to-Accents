@@ -28,64 +28,37 @@ library(here)
 library(kableExtra)
 ```
 
-# About the study/ background
+# About the study
 
 The aim of the study by @verbeke2023listening is to examine the multidialectal listening skills of proficient English learners, i.e. how well English learners (EFL) understand different accents of English. They establish three concepts: **comprehensibility** refers to the self-reported ease of understanding a speaker, **intelligibility** describes the actual understanding measured by the performance in a transcription task, and **accentedness** reports how strong the listener perceived the accent to be.
 
 Verbeke and Simon [-@verbeke2023listening: 5] apply the model of 'World Englishes' which was constructed by @kachru1985standards. This model sorts the English-speaking and English-using world into three circles: The **Inner Circle** contains native English-speaking countries, the **Outer Circle** includes countries where English is an official language and that have a history of English occupation (largely colonisation, e.g. India, Nigeria, Kenya). Lastly, in countries of the **Expanding Circle**, English is not the first, dominant, or official language, but instead as an international language.
 
+## Research questions
+
 These are the research questions defined by Verbeke and Simon [-@verbeke2023listening: 5-6]:
 
-- RQ1: How comprehensible are speakers with diﬀerent native and non-native accents of English to EFL learners in higher education and to what extent do the perceived strength of the speaker’s accent and listeners’ familiarity with the speaker’s accent impact on their comprehensibility ratings?
+-   RQ1: How comprehensible are speakers with diﬀerent native and non-native accents of English to EFL learners in higher education and to what extent do the perceived strength of the speaker’s accent and listeners’ familiarity with the speaker’s accent impact on their comprehensibility ratings?
 
-- RQ2: How intelligible are speakers with native and non-native accents of English to EFL learners enrolled at an institute of higher education in Flanders?
+-   RQ2: How intelligible are speakers with native and non-native accents of English to EFL learners enrolled at an institute of higher education in Flanders?
 
-- RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?
+-   RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?
+
+## Hypotheses
 
 These are the hypotheses defined by Verbeke and Simon [-@verbeke2023listening: 5-6]:
 
-- H1: listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
+-   H1: listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
 
-- H2: speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
+-   H2: speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
 
-- H3: a positive correlation between comprehensibility rating and intelligibility score of speakers, especially when comprehensibility rating is high
+-   H3: a positive correlation between comprehensibility rating and intelligibility score of speakers, especially when comprehensibility rating is high
 
 # Method
+
 ## Methodology in original study
 
-Spekaer:
-8 male speakers with 8 distinct accents of English (M = 48.4 years, SD = 18.6 years, range = 34-88 years)
-1 speaker of General British English (Inner Circle, non-regional)
-1 speaker of General American English (Inner Circle, non-regional)
-1 speaker of Newcastle English (Inner Circle, regional)
-1 speaker of Texan English (Inner Circle, regional)
-1 speaker of Indian (Outer Circle)
-1 speaker of Nigerian (Outer Circle)
-1 speaker of Chinese (Expanding Circle)
-1 speaker of Spanish (Expanding Circle)
-Listener:
-33 (27 Female, 6 Male) Belgian Dutch students with self-reported normal or corrected-to-normal hearing (M = 18.9 years, SD = 1.3, range = 17–22 years)
-6 listeners self-rated their listening skills in English as intermediate (B1)
-16 listeners self-rated their listening skills in English as upper-intermediate (B2)
-11 listeners self-rated their listening skills in English as advanced (C1-C2)
-Questionnaire:
-A questionnaire was administered to gather information about the demographic and linguistic background of each listener, and about the difficulties that these EFL learners experience when listening in English. Listeners were also asked to indicate how often they were exposed to the eight accents used in the present study on a 5-point scale (1 = never, 5 = very often).
-Stimuli for the comprehensibility and accentedness judgement task:
-8 passages (1 for each of the selected accents of English) of spoken language drawn from interviews and talk shows
-instances of backchanneling, false starts, throat clearings and salient background noises removed from the audio using Praat software
-root-mean-square amplitude scaled to 70 dB to minimize the potential effect of intensity differences on listeners’ judgements
-total duration (M = 17.7 seconds, SD = 2.1 seconds), number of syllables (M = 80, SD = 13) and speaking rate (M = 4.5; SD = 0.7, range = 3.8–5.4 syllables per second) controlled
-Stimuli for the orthographic transcription task:
-40 short sentences (5 for each speaker of English) selected from the same talk shows or interviews but different from the excerpts selected for the comprehensibility and accentedness judgement task
-each selected sentence contained only moderate to high frequency content words
-all sentences scaled to an average intensity of 70 dB to increase inter-stimulus similarity
-total duration (M = 2.45 seconds, SD = 0.51 seconds), number of syllables (M = 11.8, SD = 1.95) and speaking rate (M = 4.90, SD = 0.63) controlled
-Procedure:
-The experimental survey was developed in LimeSurvey (Version 2.73.1). Written on-screen instructions explained that the survey consisted of a questionnaire followed by two listening tasks. All questions and instructions were provided in English. Listeners were instructed to test their audio using
-headphones and they were encouraged to adjust their computer volume to a self-selected comfortable listening level. Participants completed the online experimental survey in a single session in a quiet room of their choice, which lasted on average 30 minutes (SD = 12 minutes). In the first part of the survey, listeners completed the questionnaire about their demographic and linguistic background. In the second part, listeners were asked to rate the speech of the eight speakers on comprehensibility and accentedness using nine-point scales. Clear and concise definitions of both terms were provided to the participants. Comprehensibility was defined as how easy or how difficult it is to understand what a speaker is saying (1 = easy to understand; 9 = hard to understand). Accentedness was defined as the degree to which a speaker’s speech sounds different from a listener’s expectation of English (1 = no accent; 9 = strong accent). The selected speech samples were randomized across all participants and were only played once. After completion of the comprehensibility and accentedness judgement task, listeners could take a self-paced break. In the final task, listeners were presented with 40 short sentences which they needed to transcribe orthographically. They were encouraged to transcribe as many words as possible. Participants heard each sentence only once and stimulus presentation was pseudo-randomized, in that no two sentences of the same speaker could immediately follow each other. After 20 sentences, participants could take a short break.
-Analysis:
-To analyze the comprehensibility and accentedness judgements, a linear mixed-effects regression model was built in R using the lme4 package (Bates et al., 2015) (cf. RQ1), with participants’ Comprehensibility ratings (score from 1 to 9) as the dependent variable. The native or non-native Accents of English (8 accents) and Accentedness ratings (score from 1 to 9), including their interaction, were entered as the fixed effects, with the Comprehensibility ratings for General British English mapped onto the intercept. Familiarity (5 levels of exposure) was also included as a fixed factor, but due to data sparsity, it was recoded as a binary categorical variable: Unfamiliar (exposure frequency: never or rarely) and Familiar (exposure frequency: sometimes, often or very often). Variability between Participants was accounted for through the addition of by-subject random intercepts and slopes. Participants’ transcription accuracy in the second task was measured as the number of correctly transcribed words in each utterance, which is interpreted as a proxy for Intelligibility (cf. RQ2). All words (content and function words) in each stimulus sentence were coded as either correctly or incorrectly transcribed. Transcription errors which could clearly be identified as spelling mistakes were not considered incorrect (e.g., studio audiance for studio audience). Intelligibility was analyzed using a mixed-effects logistic regression model, with transcription Accuracy (correct vs. incorrect transcription) as the dependent variable. Accent (8 accents), Word Type (Content vs. Function word) and Familiarity (Familiar vs. Unfamiliar) were included as fixed factors. Random intercepts were added to the model for Sentences and Items (with Items nested in Sentences), and both random intercepts and slopes were added for Participants. Incorrectly transcribed words for (i) replacements (i.e. one word is substituted for another word, such as Ireland for violent, or industries for businesses), (ii) content word omission (i.e. absence of nouns, adjectives, adverbs and nonauxiliary verbs in the transcriptions), (iii) function word omission (i.e. absence of prepositions, pronouns, particles, determiners and auxiliary verbs in the transcriptions), (iv) word form (e.g., plural noun form instead of singular form) were coded. Finally, we tested to what extent EFL learners’ comprehensibility ratings can account for their transcription accuracy (cf. RQ3). To verify the hypothesis that if comprehensibility scores are strongly skewed towards the highly comprehensible end of the scale, the intelligibility scores will be high too, a linear-mixed effects regression model was built, with the proportion of correctly transcribed words per speaker as the outcome variable. Comprehensibility ratings (score from 1 to 9) and Accent (8 accents), including their interaction, were entered as the fixed effects, with the reference level for the intercept set to the comprehensibility ratings for General British English. Variability between Participants was accounted for through the addition of by-subject random intercepts and slopes. Statistical analyses and visualizations were performed in R (R Core Team, 2022; Version 4.2.0) with RStudio and are available at https://doi.org/10.18710/8F0Q0L (Verbeke and Simon, 2023). The following R packages were used: afex (Singmann et al., 2022), car (Fox and Weisberg, 2019), dplyr (Wickham et al., 2021), effects (Fox, 2003; Fox and
-Weisberg, 2018, 2019), ggeffects (Lüdecke, 2018a), ggplot2 (Wickham, 2016), lattice (Sarkar, 2008), lme4 (Bates et al., 2015), Matrix (Bates and Maechler, 2021), optimx (Nash and Varadhan, 2011; Nash, 2014), sjmisc (Lüdecke, 2018b).
+Spekaer: 8 male speakers with 8 distinct accents of English (M = 48.4 years, SD = 18.6 years, range = 34-88 years) 1 speaker of General British English (Inner Circle, non-regional) 1 speaker of General American English (Inner Circle, non-regional) 1 speaker of Newcastle English (Inner Circle, regional) 1 speaker of Texan English (Inner Circle, regional) 1 speaker of Indian (Outer Circle) 1 speaker of Nigerian (Outer Circle) 1 speaker of Chinese (Expanding Circle) 1 speaker of Spanish (Expanding Circle) Listener: 33 (27 Female, 6 Male) Belgian Dutch students with self-reported normal or corrected-to-normal hearing (M = 18.9 years, SD = 1.3, range = 17–22 years) 6 listeners self-rated their listening skills in English as intermediate (B1) 16 listeners self-rated their listening skills in English as upper-intermediate (B2) 11 listeners self-rated their listening skills in English as advanced (C1-C2) Questionnaire: A questionnaire was administered to gather information about the demographic and linguistic background of each listener, and about the difficulties that these EFL learners experience when listening in English. Listeners were also asked to indicate how often they were exposed to the eight accents used in the present study on a 5-point scale (1 = never, 5 = very often). Stimuli for the comprehensibility and accentedness judgement task: 8 passages (1 for each of the selected accents of English) of spoken language drawn from interviews and talk shows instances of backchanneling, false starts, throat clearings and salient background noises removed from the audio using Praat software root-mean-square amplitude scaled to 70 dB to minimize the potential effect of intensity differences on listeners’ judgements total duration (M = 17.7 seconds, SD = 2.1 seconds), number of syllables (M = 80, SD = 13) and speaking rate (M = 4.5; SD = 0.7, range = 3.8–5.4 syllables per second) controlled Stimuli for the orthographic transcription task: 40 short sentences (5 for each speaker of English) selected from the same talk shows or interviews but different from the excerpts selected for the comprehensibility and accentedness judgement task each selected sentence contained only moderate to high frequency content words all sentences scaled to an average intensity of 70 dB to increase inter-stimulus similarity total duration (M = 2.45 seconds, SD = 0.51 seconds), number of syllables (M = 11.8, SD = 1.95) and speaking rate (M = 4.90, SD = 0.63) controlled Procedure: The experimental survey was developed in LimeSurvey (Version 2.73.1). Written on-screen instructions explained that the survey consisted of a questionnaire followed by two listening tasks. All questions and instructions were provided in English. Listeners were instructed to test their audio using headphones and they were encouraged to adjust their computer volume to a self-selected comfortable listening level. Participants completed the online experimental survey in a single session in a quiet room of their choice, which lasted on average 30 minutes (SD = 12 minutes). In the first part of the survey, listeners completed the questionnaire about their demographic and linguistic background. In the second part, listeners were asked to rate the speech of the eight speakers on comprehensibility and accentedness using nine-point scales. Clear and concise definitions of both terms were provided to the participants. Comprehensibility was defined as how easy or how difficult it is to understand what a speaker is saying (1 = easy to understand; 9 = hard to understand). Accentedness was defined as the degree to which a speaker’s speech sounds different from a listener’s expectation of English (1 = no accent; 9 = strong accent). The selected speech samples were randomized across all participants and were only played once. After completion of the comprehensibility and accentedness judgement task, listeners could take a self-paced break. In the final task, listeners were presented with 40 short sentences which they needed to transcribe orthographically. They were encouraged to transcribe as many words as possible. Participants heard each sentence only once and stimulus presentation was pseudo-randomized, in that no two sentences of the same speaker could immediately follow each other. After 20 sentences, participants could take a short break. Analysis: To analyze the comprehensibility and accentedness judgements, a linear mixed-effects regression model was built in R using the lme4 package (Bates et al., 2015) (cf. RQ1), with participants’ Comprehensibility ratings (score from 1 to 9) as the dependent variable. The native or non-native Accents of English (8 accents) and Accentedness ratings (score from 1 to 9), including their interaction, were entered as the fixed effects, with the Comprehensibility ratings for General British English mapped onto the intercept. Familiarity (5 levels of exposure) was also included as a fixed factor, but due to data sparsity, it was recoded as a binary categorical variable: Unfamiliar (exposure frequency: never or rarely) and Familiar (exposure frequency: sometimes, often or very often). Variability between Participants was accounted for through the addition of by-subject random intercepts and slopes. Participants’ transcription accuracy in the second task was measured as the number of correctly transcribed words in each utterance, which is interpreted as a proxy for Intelligibility (cf. RQ2). All words (content and function words) in each stimulus sentence were coded as either correctly or incorrectly transcribed. Transcription errors which could clearly be identified as spelling mistakes were not considered incorrect (e.g., studio audiance for studio audience). Intelligibility was analyzed using a mixed-effects logistic regression model, with transcription Accuracy (correct vs. incorrect transcription) as the dependent variable. Accent (8 accents), Word Type (Content vs. Function word) and Familiarity (Familiar vs. Unfamiliar) were included as fixed factors. Random intercepts were added to the model for Sentences and Items (with Items nested in Sentences), and both random intercepts and slopes were added for Participants. Incorrectly transcribed words for (i) replacements (i.e. one word is substituted for another word, such as Ireland for violent, or industries for businesses), (ii) content word omission (i.e. absence of nouns, adjectives, adverbs and nonauxiliary verbs in the transcriptions), (iii) function word omission (i.e. absence of prepositions, pronouns, particles, determiners and auxiliary verbs in the transcriptions), (iv) word form (e.g., plural noun form instead of singular form) were coded. Finally, we tested to what extent EFL learners’ comprehensibility ratings can account for their transcription accuracy (cf. RQ3). To verify the hypothesis that if comprehensibility scores are strongly skewed towards the highly comprehensible end of the scale, the intelligibility scores will be high too, a linear-mixed effects regression model was built, with the proportion of correctly transcribed words per speaker as the outcome variable. Comprehensibility ratings (score from 1 to 9) and Accent (8 accents), including their interaction, were entered as the fixed effects, with the reference level for the intercept set to the comprehensibility ratings for General British English. Variability between Participants was accounted for through the addition of by-subject random intercepts and slopes. Statistical analyses and visualizations were performed in R (R Core Team, 2022; Version 4.2.0) with RStudio and are available at https://doi.org/10.18710/8F0Q0L (Verbeke and Simon, 2023). The following R packages were used: afex (Singmann et al., 2022), car (Fox and Weisberg, 2019), dplyr (Wickham et al., 2021), effects (Fox, 2003; Fox and Weisberg, 2018, 2019), ggeffects (Lüdecke, 2018a), ggplot2 (Wickham, 2016), lattice (Sarkar, 2008), lme4 (Bates et al., 2015), Matrix (Bates and Maechler, 2021), optimx (Nash and Varadhan, 2011; Nash, 2014), sjmisc (Lüdecke, 2018b).
 
 ## Reading and Preprocessing the Data
 
@@ -216,7 +189,6 @@ Acc.stats <- ComprAcc.data |>
   )
 ```
 
-
 ```{r accentedness-stats-kbl, echo = FALSE}
 #| label: tbl-acc-stats
 #| tbl-cap: Descriptive Statistics for Accentedness Rating
@@ -228,7 +200,7 @@ kbl(Acc.stats)
 
 ## Accentedness
 
-@fig-acc-box visualises the accentedness ratings for each accent. It illustrates that General American English was rated the least accented; General British English was rated second least accented but more than General American. Participants assessed Newcastle English (British dialect) as slightly more accented than General British English while Texan, Indian, Nigerian, Chinese and Spanish English were all rated pretty similarly the most accented.
+@fig-acc-box visualises the accentedness ratings for each accent. It illustrates that General American English was rated the least accented; General British English was rated second least accented but more than General American. Participants assessed Newcastle English (British dialect) as slightly more accented than General British English while Texan, Indian, Nigerian, Chinese and Spanish English were all rated similarly as the most accented.
 
 ```{r, echo = FALSE}
 #| label: fig-acc-box
@@ -244,6 +216,7 @@ ComprAcc.data |>
   )
 ```
 
+````{=html}
 <!-- ## Accentedness and Comprehensibility
 
 RQ1: How comprehensible are speakers with diﬀerent native and non-native accents of English to EFL learners in higher education and to what extent do the perceived strength of the speaker’s accent and listeners’ familiarity with the speaker’s accent impact on their comprehensibility ratings?
@@ -273,11 +246,11 @@ cor.test(x = ComprAcc.data$Accentedness, y = ComprAcc.data$Comprehensibility)
 A statistically significant positive correlation ($p$ \< 2.2e-16) of ratings of comprehensibility and accentedness is observed, which makes intuitive sense: higher comprehensibility ratings (which, perhaps counterintuitively, mean harder to understand) occur often with higher accentedness ratings (i.e. stronger accent). The data reflects that more accented speech was more difficult to understand for speakers than less accented speech (But keep in mind that this rating is entirely subjective, as Verbeke and Simon [-@verbeke2023listening: 3] emphasise).
 
 Statistical significance test (t-test, two-sample Wilcoxon test) ? -->
+````
 
 ## Intelligibility
 
 RQ2: How intelligible are speakers with native and non-native accents of English to EFL learners enrolled at an institute of higher education in Flanders?
-
 
 ```{r intell-table, include = FALSE}
 table(ComprIntell.data$Intelligibility) #distributions, Intellibility scaled on a 0-1 scale instead of binary TRUE/FALSE values
@@ -299,7 +272,9 @@ ComprIntell.data |>
 table(Intell.data$Accent, Intell.data$Accuracy)
 ```
 
-Barplot relative frequencies (proportional):
+As @fig-intell demonstrates, participants performed better than chance for all accents, although there was some variation between languages that match the Circle model. Most errors were made for Nigerian English and Indian English, which belong to the Outer Circle according to @kachru1985standards, i.e. participants had most trouble understanding these accents. Participants had least trouble transcribing General American English & Texan English, i.e. participants understood these accents best.
+
+Notably, there were more errors in understanding Standard British English than American English (British English similar to Expanding Circle Accents). For American English, transciption performance for dialect speech (Texan English) was slightly worse than for the Standard variant (though Accuracy was still very high) while for British English, the Newcastle dialect improved intelligibility slightly compared to General British English.
 
 ```{r, echo = FALSE}
 #| label: fig-intell
@@ -312,10 +287,6 @@ ggplot(Intell.data,
   theme_bw() +
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1))
 ```
-
-As @fig-intell demonstrates, participants performed better than chance for all accents, although there was some variation between languages that match the Circle model. Most errors were made for Nigerian English and Indian English, which belong to the Outer Circle according to @kachru1985standards, i.e. participants had most trouble understanding these accents. Participants had least trouble transcribing General American English & Texan English, i.e. participants understood these accents best.
-
-Notably, there were more errors in understanding Standard British English than American English (British English similar to Expanding Circle Accents). For American English, transciption performance for dialect speech (Texan English) was slightly worse than for the Standard variant (though Accuracy was still very high) while for British English, the Newcastle dialect improved intelligibility slightly compared to General British English.
 
 ````{=html}
 <!-- ### Self reported familiarity
@@ -371,9 +342,9 @@ ComprIntell.data |>
 
 ## Intelligibility and Comprehensibility
 
-Exploring the correlation of intelligibility and comprehensibility, i.e. did self-reported comprehensibility align with objective, measured intelligibility? (RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?)
+Finally, we explore the correlation of intelligibility and comprehensibility to approach the question whether self-reported comprehensibility aligned with objective, measured intelligibility. (RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?)
 
-Checking correlation of comprehensibility and intelligibility for each accent using a scatterplot:
+In line with @verbeke2023listening, we create a scatterplot to check the correlation of comprehensibility and intelligibility for each accent.
 
 ```{r intell-scatter, echo = FALSE}
 #| label: fig-intell-scatter
@@ -388,13 +359,13 @@ ComprIntell.data |>
 
 ```
 
-@fig-intell-scatter looks pretty identical to the one from the paper (was not on purpose)! What does it tell us? -> no clear Correlation of comprehensibility and intelligibility, definitely not linear across accents.
+@fig-intell-scatter looks almost identical to the one from the paper. As dispersion of data points differs across accents, and no real pattern can be detected, there seems to no clear correlation of comprehensibility and intelligibility. Definitely not linear across accents. Therefore, self-reported ease of understanding (comprehensibility) and actual understanding (intelligibility) did not linearly and clearly relate to each other.
 
 # Discussion and Conclusion
 
-- for the most part, proficient EFl learners were able to understand accented English speech very well, but there were differences: General American English, which was rated the least accented and the most comprehensible was the easiest accent to understand.
+-   for the most part, proficient EFl learners were able to understand accented English speech very well, but there were differences: General American English, which was rated the least accented and the most comprehensible was the easiest accent to understand.
 
-- comprehensibilit and accentedness are positively correlated; comprehensibility ratings did statistically not align with actual transcription performance (RQ3, see @@fig-intell-scatter)
+-   comprehensibilit and accentedness are positively correlated; comprehensibility ratings did statistically not align with actual transcription performance (RQ3, see \@@fig-intell-scatter)
 
 ... (Please add!)
 
