@@ -14,6 +14,7 @@ format:
     fig-height: 4
     fig-align: center
     latex-float: false
+    fig-pos: H
     number-sections: true
     embed-resources: true
 execute:
@@ -421,7 +422,7 @@ ComprIntell.data |>
 
 # Conclusion
 
-Our reproduction, just like the original study, has shown that for the most part, proficient EFL learners were able to understand accented English speech very well, but there were differences: General American English, which was rated the least accented and the most comprehensible was the easiest accent to understand. Comprehensibility and accentedness are positively correlated; comprehensibility ratings did statistically not align with actual transcription performance (RQ3, see \@@fig-intell-scatter.)
+Our reproduction, just like the original study, has shown that for the most part, proficient EFL learners were able to understand accented English speech very well, but there were differences: General American English, which was rated the least accented and the most comprehensible was the easiest accent to understand. Comprehensibility and accentedness are positively correlated; comprehensibility ratings did statistically not align with actual transcription performance (RQ3, see @fig-intell-scatter.)
 
 ... (Please add!)
 
