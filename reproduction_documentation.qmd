@@ -63,7 +63,7 @@ These are the hypotheses defined by Verbeke and Simon [-@verbeke2023listening: 5
 
 Data used in this study were collected by @verbeke2023listening based on an experimental survey (consisting of a questionnaire followed by two listening tasks) developed in LimeSurvey (Version 2.73.1). All questions and instructions were provided in English. Participants completed the online experimental survey in a single session in a quiet room of their choice, which lasted on average 30 minutes (SD = 12 minutes). In the first part of the survey, listeners completed the questionnaire about their demographic and linguistic background. In the second part, listeners were asked to rate the speech of the eight speakers on comprehensibility and accentedness using nine-point scales. Clear and concise definitions of both terms were provided to the participants. Comprehensibility was defined as how easy or how difficult it is to understand what a speaker is saying (1 = easy to understand; 9 = hard to understand). Accentedness was defined as the degree to which a speaker’s speech sounds different from a listener’s expectation of English (1 = no accent; 9 = strong accent). The selected speech samples were randomized across all participants and were only played once. After completion of the comprehensibility and accentedness judgement task, listeners could take a self-paced break. In the final task, listeners were presented with 40 short sentences which they needed to transcribe orthographically. They were encouraged to transcribe as many words as possible. Participants heard each sentence only once and stimulus presentation was pseudo-randomized, in that no two sentences of the same speaker could immediately follow each other. After 20 sentences, participants could take a short break. Details regarding the composition of participants, questionnaire and stimuli are given as the following:
 
-#### Listener:
+### Listener:
 
 -   33 (27 Female, 6 Male) Belgian Dutch students with self-reported normal or corrected-to-normal hearing (M = 18.9 years, SD = 1.3, range = 17–22 years)
 
@@ -73,11 +73,11 @@ Data used in this study were collected by @verbeke2023listening based on an expe
 
 -   11 listeners self-rated their listening skills in English as advanced (C1-C2)
 
-#### Questionnaire:
+### Questionnaire:
 
 A questionnaire was administered to gather information about the demographic and linguistic background of each listener, and about the difficulties that these EFL learners experience when listening in English. Listeners were also asked to indicate how often they were exposed to the eight accents used in the present study on a 5-point scale (1 = never, 5 = very often).
 
-#### Speaker
+### Speaker
 
 -   8 male speakers with 8 distinct accents of English (M = 48.4 years, SD = 18.6 years, range = 34-88 years)
 
@@ -97,7 +97,7 @@ A questionnaire was administered to gather information about the demographic and
 
 -   1 speaker of Spanish (Expanding Circle)
 
-#### Stimuli for the comprehensibility and accentedness judgement task:
+### Stimuli for the comprehensibility and accentedness judgement task:
 
 -   8 passages (1 for each of the selected accents of English) of spoken language drawn from interviews and talk shows
 
@@ -107,7 +107,7 @@ A questionnaire was administered to gather information about the demographic and
 
 -   total duration (M = 17.7 seconds, SD = 2.1 seconds), number of syllables (M = 80, SD = 13) and speaking rate (M = 4.5; SD = 0.7, range = 3.8–5.4 syllables per second) controlled
 
-#### Stimuli for the orthographic transcription task:
+### Stimuli for the orthographic transcription task:
 
 -   40 short sentences (5 for each speaker of English) selected from the same talk shows or interviews but different from the excerpts selected for the comprehensibility and accentedness judgement task
 
@@ -117,9 +117,11 @@ A questionnaire was administered to gather information about the demographic and
 
 -   total duration (M = 2.45 seconds, SD = 0.51 seconds), number of syllables (M = 11.8, SD = 1.95) and speaking rate (M = 4.90, SD = 0.63) controlled
 
-@verbeke2023listening issued a data availability statement along with the publication of their paper. The data is available at the [Tromsø Repository of Language and Linguistics](https://dataverse.no/dataset.xhtml?persistentId=doi:10.18710/8F0Q0L).
+@verbeke2023listening issued a data availability statement along with the publication of their paper. The data and their code is available at the [Tromsø Repository of Language and Linguistics](https://dataverse.no/dataset.xhtml?persistentId=doi:10.18710/8F0Q0L).
 
 ## Reading and Pre-processing the Data
+
+In providing their data and code, as well as detailed supplementary material, @verbeke2023listening hugely facilitated reproduction of their study. However, since they fit several complex models, the code takes a long time to fully run (more than one hour) and requires a lot of computational power. In this paper, we therefore do not aim to exactly reproduce the graphs and results of @verbeke2023listening, but instead use the data to create our own analysis on a smaller scale. We decided to use the program `Quarto` instead of `R Markdown` as it promises to be the "next generation version of R Markdown from Posit" (https://quarto.org). Posit is the development company of RStudio and like `R Markdown`, `Quarto` renders documents via [knitr](https://yihui.org/knitr/). `Quarto` is free-of-cost and can be downloaded [here](https://quarto.org/docs/get-started/).  
 
 First, we read in the data provided by the authors of the study.
 
@@ -372,7 +374,7 @@ sessionInfo()
 
 ## Package References
 
-The code to generate these package references was written by Elen Le Foll.
+The code to generate these package references was written by Elen Le Foll [@lefoll2025data].
 
 ```{r generateBibliography, results="asis", echo = FALSE}
 
