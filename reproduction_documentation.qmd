@@ -53,7 +53,7 @@ These are the hypotheses defined by Verbeke and Simon [-@verbeke2023listening: 5
 
 -   H1: listeners’ judgements of comprehensibility vary as function of which circle speakers represent, i.e. speakers with Inner circle accents are more comprehensible than speakers with non-Inner Circle accents
 
--   H2: speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, hypothesised to be rated more accented because further removed from expectation
+-   H2: speakers with Expanding Circle accents are slightly easier to understand than speakers with Outer Circle accents, and are rated more accented because they are further removed from expectation
 
 -   H3: a positive correlation between comprehensibility rating and intelligibility score of speakers, especially when comprehensibility rating is high
 
@@ -121,7 +121,7 @@ A questionnaire was administered to gather information about the demographic and
 
 ## Reading and Pre-processing the Data
 
-In providing their data and code, as well as detailed supplementary material, @verbeke2023listening hugely facilitated reproduction of their study. However, since they fit several complex models, the code takes a long time to fully run (more than one hour) and requires a lot of computational power. In this paper, we therefore do not aim to exactly reproduce the graphs and results of @verbeke2023listening, but instead use the data to create our own analysis on a smaller scale. We decided to use the program `Quarto` instead of `R Markdown` as it promises to be the "next generation version of R Markdown from Posit" (https://quarto.org). Posit is the development company of RStudio and like `R Markdown`, `Quarto` renders documents via [knitr](https://yihui.org/knitr/). `Quarto` is free-of-cost and can be downloaded [here](https://quarto.org/docs/get-started/).  
+In providing their data and code, as well as detailed supplementary material, @verbeke2023listening hugely facilitated reproduction of their study. However, since they fit several complex models, the code takes a long time to fully run (more than one hour) and requires a lot of computational power. In this paper, we therefore do not aim to exactly reproduce the graphs and results of @verbeke2023listening, but instead use the data to create our own analysis on a smaller scale. We decided to use the program `Quarto` instead of `R Markdown` as it promises to be the "next generation version of R Markdown from Posit" (https://quarto.org). Posit is the development company of RStudio and like `R Markdown`, `Quarto` renders documents via [knitr](https://yihui.org/knitr/). `Quarto` is free-of-cost and can be downloaded [here](https://quarto.org/docs/get-started/).
 
 First, we read in the data provided by the authors of the study.
 
@@ -272,7 +272,6 @@ ComprIntell.data |>
   theme_bw()
 ```
 
-
 We attempted to reproduce the analysis on intelligibility data, and visualize our output as seen on @fig-intell-density. The figure shows a bell-shaped curve but is left-skewed: overall, participants performed above chance in the transcription task.
 
 ```{r, include = FALSE}
@@ -333,10 +332,9 @@ mosaicplot(Word_Type ~ Accuracy,
 
 ````
 
-
 ## Intelligibility and Comprehensibility
 
-Finally, we explored the correlation of intelligibility and comprehensibility to approach the question whether self-reported comprehensibility aligned with objective, measured intelligibility. (RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?)
+Finally, we explored the correlation of intelligibility and comprehensibility to approach the question whether self-reported comprehensibility aligned with objective, measured intelligibility (RQ3: To what extent are EFL learners’ comprehensibility ratings of speakers with native and non-native accents of English related to their intelligibility scores for these speakers?).
 
 In line with @verbeke2023listening, we created a scatterplot to check the correlation of comprehensibility and intelligibility for each accent.
 
@@ -353,13 +351,11 @@ ComprIntell.data |>
 
 ```
 
-@fig-intell-scatter looks almost identical to the one from the paper. As dispersion of data points differs across accents, and no real pattern can be detected, there seems to no clear correlation of comprehensibility and intelligibility. Definitely not linear across accents. Therefore, self-reported ease of understanding (comprehensibility) and actual understanding (intelligibility) did not linearly and clearly relate to each other.
+@fig-intell-scatter looks almost identical to the one reported by Verbecke and Simon [-@verbeke2023listening: 15]. As dispersion of data points differs across accents, and no real pattern can be detected, there seems to no clear correlation of comprehensibility and intelligibility. Therefore, self-reported ease of understanding (comprehensibility) and actual understanding (intelligibility) did not linearly and clearly relate to each other across accents.
 
 # Conclusion
 
-Our reproduction, just like the original study, has shown that for the most part, proficient EFL learners were able to understand accented English speech very well, but there were differences: General American English, which was rated the least accented and the most comprehensible was the easiest accent to understand. Comprehensibility and accentedness are positively correlated; comprehensibility ratings did statistically not align with actual transcription performance. 
-
-... (Please add!)
+Just like the original study, our reproduction has shown that for the most part, proficient EFL learners were able to understand accented English speech very well. However, there were differences: General American English, which was rated as the least accented and the most comprehensible was the easiest accent to understand. In line with hypothesis H2, participants found Outer circle accents (i.e. Nigerian English, Indian English) the most difficult to transcribe accurately. However, accents from both the Expanding Circle and the Outer Circle were perceived as being similary accented. Visual inspection of the correlation of comprehensibility and intelligibility suggested that self-reported ease of understanding did not meaningfully align with actual transcription performance across accents.
 
 # References
 
