@@ -18,3 +18,4 @@
 **Authors:** Gil Verbeke, Ellen Simon  
 **Publication Date:** September 2023  
 **DOI:** [https://doi.org/10.1016/j.lingua.2023.103572](https://doi.org/10.1016/j.lingua.2023.103572)
+**Data & Artefacts:** [https://uni-koeln.sciebo.de/s/jmRcT2Jsd3NaLFe](https://uni-koeln.sciebo.de/s/jmRcT2Jsd3NaLFe)
