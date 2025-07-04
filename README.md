@@ -1,4 +1,4 @@
-### How to get the data using git-annex
+### How to Get the Data Using git-annex
 Please follow the steps below to obtain the data needed for reproducing our study.
 The data is stored on the cloud service Sciebo, accessible to members of the University of Cologne: https://uni-koeln.sciebo.de/s/jmRcT2Jsd3NaLFe?path=%2Fdata. To fetch the data using git-annex, the Sciebo folder must be synced locally, that is, via the Sciebo desktop app.
 
@@ -14,7 +14,7 @@ The data is stored on the cloud service Sciebo, accessible to members of the Uni
 
    ``` git annex initremote sciebo-remote type=directory directory=~[YOUR PATH]/sciebo/reproduction_artefacts/data encryption=none ```
 
-6. Get the data: This replaces the symlinks with the actual files.
+6. Fetch the data: This replaces the symlinks with the actual files.
 
 
    ```git annex get .```
