@@ -4,10 +4,10 @@ The data is stored on the cloud service Sciebo, accessible to members of the Uni
 
 1. Download the Sciebo app here: https://hochschulcloud.nrw/de/download/index.html. Log in and navigate to the folder, making sure that is synced locally. The path to the local folder should look like this: ```[YOUR PATH]/sciebo/reproduction_artefacts/data```
 
-4. Clone the repository to get a local copy of the repository including symlinks:
+4. Clone the repository to get a local copy of the repository including symlinks. Copy this into your terminal.
 
 
-   ``` git clone <https://github.com/RoseHst/Reproduction-Listening-to-Accents>```
+   ``` git clone <https://github.com/RoseHst/Reproduction-Listening-to-Accents>.git```
 
 
 5. In the cloned repository, initialize the sciebo remote by pointing it to the correct folder, so that git-annex knows where the actual data is.
