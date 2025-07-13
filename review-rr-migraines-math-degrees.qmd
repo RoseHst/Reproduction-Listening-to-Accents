@@ -1,0 +1,23 @@
+---
+title: "Review of: Migraines and Math Degrees: A Spurious Love Story"
+subtitle: Original paper by Tilmann Diepenbruck, Tom Hunze
+authors: Review by Rose Hörsting, Ali Yildiz, Zihang Su
+format: pdf
+editor: visual
+---
+
+## Reproduction process
+
+Instructions:
+
+-   
+
+**Reproduce the paper using the instructions provided by the group in the documentation of the paper. How did it go? Have you successfully reproduced the paper? To which degree? Did you got blocked somewhere? Document what you have experienced and how you worked around any issue.**
+
+...
+
+## How were contents of lectures implemented?
+
+## Which alternative technical solution could one have used? Why would they have been better or more appropriate?
+
+## Which reproducibility issues have not been addressed or have been addressed in an insufficient way?
