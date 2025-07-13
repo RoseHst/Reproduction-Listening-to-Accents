@@ -10,13 +10,23 @@ editor: visual
 
 Instructions:
 
--   
+-   detailed step-by-step instructions
 
 **Reproduce the paper using the instructions provided by the group in the documentation of the paper. How did it go? Have you successfully reproduced the paper? To which degree? Did you got blocked somewhere? Document what you have experienced and how you worked around any issue.**
 
 ...
 
+Nix package manager "to ensure that the environment in which the paper is built is consistent across different systems" (quote from README.md)
+
 ## How were contents of lectures implemented?
+
+-   **Executable paper:** The code is not separate from the paper but embedded
+
+-   **Transparency**: Group provided the platform requirements by listing the platforms and versions on which the building of the paper has been tested
+
+-   **Licensing**: Unilicense for source code, allows reader to "copy, modify, publish, use, compile, sell, or distribute" the software for any purpose; Generated paper licensed under CC0 1.0 Universal license
+
+-   **Data**: Fetched from the internet during build process by Nix or git-annex (ensuring that data has not been modified)
 
 ## Which alternative technical solution could one have used? Why would they have been better or more appropriate?
 
