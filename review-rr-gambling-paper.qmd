@@ -1,0 +1,49 @@
+---
+title: "Review of: Why are Roulette Tables Green?"
+subtitle: Original paper by Lukas Göbl, Peer Niklas Schäfer
+authors: Review by Rose Hörsting, Ali Yildiz, Zihang Su
+format: pdf
+editor: visual
+---
+
+## Reproduction process
+
+Instructions:
+
+-   install make
+
+-   set up make
+
+-   launch notebook
+
+-   regenerate HTML file, compare to "original_paper.html"
+
+**Reproduce the paper using the instructions provided by the group in the documentation of the paper. How did it go? Have you successfully reproduced the paper? To which degree? Did you got blocked somewhere? Document what you have experienced and how you worked around any issue.**
+
+...
+
+## How were contents of lectures implemented?
+
+-   Computing platform: Jupyter Notebook
+
+-   Documentation in README.md of the git repository. Makefile ensures consistent environment, which includes all necessary packages and ensures independent of operating system and package versions.
+
+-   Executable paper: The code is not separate from the paper but instead embedded, Makefile provides documentation as program
+
+-   Reproduction of both the HTML file (the final paper) and the Jupyter Notebook used to produce this paper
+
+-   The group provided their individual system specifications (software, package versions).
+
+-   source data: CSV-document are available on the Git repository (CSV as widespread file format, ensures readability), descriptive variable names (csv headers) ensure understandability (i.e. explanatory metadata)
+
+-   Licensing: MIT License granting permission to deal with software without restrictions -allowing the reader to reuse, modify and redistriute for own purposes
+
+-   Paper includes reproducible figures: barplots and boxplots derived from data, plus code used to create graphs (package: matplotlib)
+
+## Which alternative technical solution could one have used? Why would they have been better or more appropriate?
+
+-   Version control system (e.g. git-annex) to manage data, helpful especially if the data were bigger
+
+-   Hard coding of references is limits reproducibility and is prone to consistency errors (especially if more references are added) -\> potentially better to use separate .fib file and generate references
+
+## Which reproducibility issues have not been addressed or have been addressed in an insufficient way?
