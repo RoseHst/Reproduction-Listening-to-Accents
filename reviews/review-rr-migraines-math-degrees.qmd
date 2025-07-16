@@ -5,29 +5,26 @@ authors: Review by Rose Hörsting, Ali Yildiz, Zihang Su
 format: pdf
 editor: visual
 ---
+The reviewed work has been precisely reproduced in its entirety on a Windows machine (Windows 11 Pro, Version 24H2, Build 26100.4652) following steps below:
 
-## Reproduction process
+-   Install WSL along with the designated Linux distribution (Ubuntu 22.04 LTS)
+-   Install Git
+-   Install Nix within WSL
+-   Enable Nix Flakes
+-   Fetch data via git-annex
+-   Rebuild the original paper
+-   Install wslu
+-   Locate rebuilt file
+-   Verify rebuilt file
 
-Instructions:
+The reproduction procedure was smooth, as sufficient instruction for each step can be found in the posted README file. In addition, the authors provide code for automatically verifying the reproduction against the original paper, which enables immediate comparison and the output of which is accordance with the expectation.
 
--   detailed step-by-step instructions
+The reviewed work is high in executability, as compatibility with the most widespread operating systems (Linux, MacOS, Windows) was taken into consideration by the authors when providing instruction for reproduction.
 
-**Reproduce the paper using the instructions provided by the group in the documentation of the paper. How did it go? Have you successfully reproduced the paper? To which degree? Did you got blocked somewhere? Document what you have experienced and how you worked around any issue.**
+The reviewed work is high in readability, as both the documentation (.md) and the paper itself (.pdf) are accessible in formats generally supported across platforms. 
 
-...
+Data used to produce the analysis are accessed through an established version control system (git-annex), which benefits findability, durability and authenticity thereof.
 
-Nix package manager "to ensure that the environment in which the paper is built is consistent across different systems" (quote from README.md)
+The reviewed work is licenced under CC0 1.0 Universal, which allows others to copy, modify, publish, use, compile, sell, or distribute the work for any purpose. thereby ensuring complete openness, accessibility and reusability of methods as well as results involved.
 
-## How were contents of lectures implemented?
-
--   **Executable paper:** The code is not separate from the paper but embedded
-
--   **Transparency**: Group provided the platform requirements by listing the platforms and versions on which the building of the paper has been tested
-
--   **Licensing**: Unilicense for source code, allows reader to "copy, modify, publish, use, compile, sell, or distribute" the software for any purpose; Generated paper licensed under CC0 1.0 Universal license
-
--   **Data**: Fetched from the internet during build process by Nix or git-annex (ensuring that data has not been modified)
-
-## Which alternative technical solution could one have used? Why would they have been better or more appropriate?
-
-## Which reproducibility issues have not been addressed or have been addressed in an insufficient way?
+Understandability of the reviewed work varies depending on how familiar readers are with the functionality of certain software, in this case Nix the package manager in particular. When rebuilt with a single line of command, there is no apparent 1-to-1 correspondence between code and code-generated analytic outcome (statistics and visualization thereof) in the paper, which is to be found in a separated python script not specifically mentioned in documentation. In certain disciplines, formats enabling seamless integration of code and analytic outcome (e.g. knitr, Juypter) are more prevalent, which are not necessarily a better, but definitely a viable option.
